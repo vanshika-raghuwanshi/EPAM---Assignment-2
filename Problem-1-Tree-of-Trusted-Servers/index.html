@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tree of Trusted Servers</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Vis Network -->
+    <script
+        type="text/javascript"
+        src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js">
+    </script>
+
+    <!-- Project CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+
+    <div class="background">
+        <div class="grid"></div>
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+    </div>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <a href="../../index.html" class="brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-sitemap"></i>
+            </div>
+
+            <div>
+                <span class="brand-small">ALGORITHM LAB</span>
+                <strong>Tree of Trusted Servers</strong>
+            </div>
+
+        </a>
+
+
+        <a href="../../index.html" class="back-button">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Problems
+
+        </a>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-badge">
+
+                <span></span>
+
+                MEDIUM LEVEL • TREE • DFS • XOR
+
+            </div>
+
+
+            <h1>
+
+                Tree of
+
+                <span>Trusted Servers</span>
+
+            </h1>
+
+
+            <p>
+
+                Analyze the communication tree of an organization
+                and determine which servers satisfy the security
+                policy based on the XOR of security keys along
+                the path from the root server.
+
+            </p>
+
+
+            <div class="hero-info">
+
+                <div>
+                    <i class="fa-solid fa-code-branch"></i>
+                    DFS Traversal
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Security Analysis
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-bolt"></i>
+                    O(N)
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MAIN APPLICATION
+        ========================== -->
+
+        <section class="application">
+
+            <!-- INPUT PANEL -->
+
+            <div class="input-panel">
+
+                <div class="panel-heading">
+
+                    <div class="panel-icon">
+                        <i class="fa-solid fa-keyboard"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Input Configuration</h2>
+
+                        <p>
+                            Enter the server network details
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- N and K -->
+
+                <div class="input-row">
+
+                    <div class="input-group">
+
+                        <label for="n">
+                            Number of Servers
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-server"></i>
+
+                            <input
+                                type="number"
+                                id="n"
+                                min="1"
+                                placeholder="e.g. 7">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="k">
+                            Threshold K
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="number"
+                                id="k"
+                                min="0"
+                                placeholder="e.g. 5">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Keys -->
+
+                <div class="input-group">
+
+                    <label for="keys">
+
+                        Security Keys
+
+                        <span>
+                            N integers
+                        </span>
+
+                    </label>
+
+                    <div class="textarea-wrapper">
+
+                        <i class="fa-solid fa-key"></i>
+
+                        <textarea
+                            id="keys"
+                            rows="3"
+                            placeholder="Example: 3 6 2 7 1 4 5">
+                        </textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Edges -->
+
+                <div class="input-group">
+
+                    <label for="edges">
+
+                        Tree Edges
+
+                        <span>
+                            N - 1 edges
+                        </span>
+
+                    </label>
+
+                    <div class="textarea-wrapper edge-area">
+
+                        <i class="fa-solid fa-diagram-project"></i>
+
+                        <textarea
+                            id="edges"
+                            rows="7"
+                            placeholder="Example:
+1 2
+1 3
+2 4
+2 5
+3 6
+3 7">
+                        </textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="button-row">
+
+                    <button
+                        id="sampleBtn"
+                        class="secondary-btn">
+
+                        <i class="fa-solid fa-flask"></i>
+
+                        Load Sample
+
+                    </button>
+
+
+                    <button
+                        id="resetBtn"
+                        class="reset-btn">
+
+                        <i class="fa-solid fa-rotate-left"></i>
+
+                        Reset
+
+                    </button>
+
+
+                    <button
+                        id="calculateBtn"
+                        class="primary-btn">
+
+                        <i class="fa-solid fa-play"></i>
+
+                        Analyze Tree
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULT PANEL -->
+
+            <div class="result-panel">
+
+                <div class="panel-heading">
+
+                    <div class="panel-icon result-icon">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Security Analysis</h2>
+
+                        <p>
+                            Trusted server evaluation
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Statistics -->
+
+                <div class="result-stats">
+
+                    <div class="result-stat">
+
+                        <span>
+                            TOTAL SERVERS
+                        </span>
+
+                        <strong id="totalServers">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-stat trusted-stat">
+
+                        <span>
+                            TRUSTED SERVERS
+                        </span>
+
+                        <strong id="trustedServers">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-stat">
+
+                        <span>
+                            THRESHOLD K
+                        </span>
+
+                        <strong id="displayK">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Result message -->
+
+                <div
+                    id="resultMessage"
+                    class="result-message">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    Enter the server details and analyze
+                    the tree.
+
+                </div>
+
+
+                <!-- Result Table -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Server</th>
+
+                                <th>Key</th>
+
+                                <th>Path XOR</th>
+
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="resultTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TREE VISUALIZATION
+        ========================== -->
+
+        <section class="visualization-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <span class="section-label">
+                        LIVE VISUALIZATION
+                    </span>
+
+                    <h2>
+                        Server Trust Tree
+                    </h2>
+
+                </div>
+
+
+                <div class="legend">
+
+                    <div>
+                        <span class="legend-dot trusted"></span>
+                        Trusted
+                    </div>
+
+                    <div>
+                        <span class="legend-dot untrusted"></span>
+                        Not Trusted
+                    </div>
+
+                    <div>
+                        <span class="legend-dot root"></span>
+                        Root
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="tree"
+                class="tree-container">
+
+                <div class="empty-tree">
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-sitemap"></i>
+
+                    </div>
+
+                    <h3>
+                        Tree Visualization
+                    </h3>
+
+                    <p>
+                        Load a sample or enter your own
+                        input to visualize the server tree.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ALGORITHM EXPLANATION
+        ========================== -->
+
+        <section class="algorithm-section">
+
+            <div class="section-title center-title">
+
+                <span class="section-label">
+                    HOW IT WORKS
+                </span>
+
+                <h2>
+                    Algorithm Overview
+                </h2>
+
+            </div>
+
+
+            <div class="algorithm-grid">
+
+
+                <div class="algorithm-card">
+
+                    <div class="algorithm-number">
+                        01
+                    </div>
+
+                    <div class="algorithm-icon">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+
+                    <h3>
+                        Build the Tree
+                    </h3>
+
+                    <p>
+                        The server connections are represented
+                        as an undirected tree using an adjacency
+                        list.
+                    </p>
+
+                </div>
+
+
+                <div class="algorithm-card">
+
+                    <div class="algorithm-number">
+                        02
+                    </div>
+
+                    <div class="algorithm-icon">
+                        <i class="fa-solid fa-person-walking-arrow-right"></i>
+                    </div>
+
+                    <h3>
+                        Traverse Using DFS
+                    </h3>
+
+                    <p>
+                        Starting from Server 1, DFS visits every
+                        server while maintaining the XOR value
+                        calculated along the path.
+                    </p>
+
+                </div>
+
+
+                <div class="algorithm-card">
+
+                    <div class="algorithm-number">
+                        03
+                    </div>
+
+                    <div class="algorithm-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <h3>
+                        Check Trust
+                    </h3>
+
+                    <p>
+                        A server is trusted when its path XOR
+                        value is greater than or equal to K.
+                    </p>
+
+                </div>
+
+
+                <div class="algorithm-card">
+
+                    <div class="algorithm-number">
+                        04
+                    </div>
+
+                    <div class="algorithm-icon">
+                        <i class="fa-solid fa-chart-simple"></i>
+                    </div>
+
+                    <h3>
+                        Count Results
+                    </h3>
+
+                    <p>
+                        Finally, all trusted servers are counted
+                        and displayed with their path XOR values.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMPLEXITY
+        ========================== -->
+
+        <section class="complexity-section">
+
+            <div class="complexity-card">
+
+                <div>
+
+                    <span class="section-label">
+                        PERFORMANCE
+                    </span>
+
+                    <h2>
+                        Algorithm Complexity
+                    </h2>
+
+                    <p>
+                        The tree is traversed exactly once,
+                        making the solution highly efficient
+                        even for large networks.
+                    </p>
+
+                </div>
+
+
+                <div class="complexity-values">
+
+                    <div>
+
+                        <span>
+                            TIME
+                        </span>
+
+                        <strong>
+                            O(N)
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            SPACE
+                        </span>
+
+                        <strong>
+                            O(N)
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            <i class="fa-solid fa-sitemap"></i>
+
+            Tree of Trusted Servers
+
+        </div>
+
+        <p>
+            Medium Level Problem • Tree & Graph Algorithm Lab
+        </p>
+
+        <div class="footer-line"></div>
+
+        <span>
+            Built with HTML • CSS • JavaScript
+        </span>
+
+    </footer>
+
+
+    <!-- Project JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
