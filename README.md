@@ -21,13 +21,6 @@ Uses BFS to calculate the shortest distance from City 1 and identifies cities re
 - JavaScript
 - Vis.js
 
-## How to Run
-
-1. Clone the repository.
-2. Open the project in VS Code.
-3. Open the root `index.html` using Live Server.
-4. Select a problem from the dashboard.
-
 ## Author
 
 **Vanshika Raghuwanshi**
